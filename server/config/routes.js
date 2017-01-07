@@ -45,5 +45,8 @@ module.exports = function(app){
     app.post('/addMount/:manufacturerID', function(req,res){
         manufacturerController.addMount(req,res);
     });
+    app.get('/checkSessionUser', function(req,res){
+        userController.checkSessionUser(req,res);
+    })
     
 }

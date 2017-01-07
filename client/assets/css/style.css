@@ -1,0 +1,29 @@
+*{
+    border: 0px;
+    margin: 0px;
+    padding: 0px;
+}
+
+div.container {
+    width: 1500px;
+    border: 3px dashed black;
+}
+
+div.topNavBar {
+    height: 100px;
+    border: 2px solid red;
+}
+
+div.sideNavBar {
+    display: inline-block;
+    width: 160px;
+    border: 2px solid blue;
+    background: gray;
+}
+
+div.mainWindow {
+    display: inline-block;
+    width: 1300px;
+    background: lightgray;
+    border: 2px solid green;
+}

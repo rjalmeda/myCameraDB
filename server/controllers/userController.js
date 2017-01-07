@@ -12,6 +12,8 @@ module.exports = (function(){
                     return res.json({success: false});
                 } else if(user){
                     if(bcrypt.compareSync(req.body.password, user.password)){
+                        req.session.user = user;
+                        req.session.save();
                         return res.json({success: true, user: user})
                     } else {
                         return res.json({success: false})
@@ -40,6 +42,14 @@ module.exports = (function(){
                     })
                 }
             })
+        },
+        
+        checkSessionUser: function(req,res){
+            if(req.session.user){
+                return res.json({success: true, user: req.session.user, session: req.session})
+            } else {
+                return res.json({success: false, message: "no user in session", session: req.session})
+            }
         }
         
     }

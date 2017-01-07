@@ -32,6 +32,10 @@ app.config(function($routeProvider){
         templateUrl: '/partials/accessory.html',
         controller: 'accessoryController'
     })
+    .when('/profile', {
+        templateUrl: '/partials/profile.html',
+        controller: 'profileController'
+    })
     .otherwise({
         redirectTo: '/login'
     })
