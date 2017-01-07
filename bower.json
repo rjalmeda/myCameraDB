@@ -1,0 +1,21 @@
+{
+  "name": "cameradb",
+  "description": "",
+  "main": "server.js",
+  "authors": [
+    "RJ Almeda <rjalmeda@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+   "dependencies": {
+    "angular": "~1.5.x",
+    "angular-route": "~1.5.x"
+  }
+}

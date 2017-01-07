@@ -1,0 +1,30 @@
+<!doctype html>
+<html ng-app='app'>
+    <head>
+        <meta charset="utf-8">
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script src="angular/angular.js"></script>
+        <script src="angular-route/angular-route.js"></script>
+        <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+        <script src="app.js"></script>
+        <script src="controllers/indexController.js"></script>
+        <script src="factories/indexFactory.js"></script>
+        <script src="controllers/loginController.js"></script>
+        <script src="factories/loginFactory.js"></script>
+        <script src="controllers/adminController.js"></script>
+        <script src="factories/adminFactory.js"></script>
+        <script src="directives/loginDirective.js"></script>
+        <script src="directives/manufacturerList.js"></script>
+        <script src="controllers/manufacturerListController.js"></script>
+        <script src="factories/adminManufacturerFactory.js"></script>
+        <script src="controllers/manufacturerController.js"></script>
+        <script src="controllers/camerasListController.js"></script>
+        <script src="controllers/lensListController.js"></script>
+        <script src="controllers/accessoryController.js"></script>
+    </head>
+    <body>
+        <div ng-view>
+        </div>
+    </body>
+</html>

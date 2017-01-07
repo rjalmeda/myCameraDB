@@ -1,0 +1,66 @@
+<h1>Lens List</h1>
+{{manufacturer.name}}
+<div class="lensAdd">
+    <form ng-submit="addLens()">
+        <p>Name: <input type="text" ng-model="lens.name"></p>
+        <p>Model: <input type="text" ng-model="lens.model"></p>
+        <p>Mount: 
+            <select ng-model="lens.mount">
+                <option ng-repeat="mount in manufacturer.mounts">{{mount}}</option>
+            </select>
+        </p>
+        <p>Focal Length: <input type="text" ng-model="lens.focalLength"></p>
+        <p>Min Focal: <input type="number" ng-model="lens.minFocal"></p>
+        <p>Max Focal: <input type="number" ng-model="lens.maxFocal"></p>
+        <p>Type:
+            <select ng-model="lens.type">
+                <option value="prime">Prime</option>
+                <option value="zoom">Zoom</option>
+                <option value="specialty">Specialty</option>
+            </select>
+        </p>
+        <p>Aperture: <input type="string" ng-model="lens.aperture"></p>
+        <p>Min Aperture: <input type="number" step=0.1 ng-model="lens.minAperture"></p>
+        <p>Max Aperture: <input type="number" step=0.1 ng-model="lens.maxAperture"></p>
+        <p>Weight: <input type="number" step=0.01 ng-model="lens.weight"></p>
+        <p>Price: <input type="number" step=0.01 ng-model="lens.price"></p>
+        <button type="submit">Add Lens</button>
+    </form>
+    <p style="colo:red" ng-repeat="error in errors">{{error}}</p>
+</div>
+<div class="lensList">
+    <table class="lensList">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Model</th>
+                <th>Lens Type</th>
+                <th>Focal Length</th>
+                <th>Min Focal</th>
+                <th>Max Focal</th>
+                <th>Aperture</th>
+                <th>Min Aperture</th>
+                <th>Max Aperture</th>
+                <th>Weight</th>
+                <th>Price</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="lens in lenses">
+                <td>{{lens.name}}</td>
+                <td>{{lens.model}}</td>
+                <td>{{lens.type}}</td>
+                <td>{{lens.focalLength}}</td>
+                <td>{{lens.minFocal}}</td>
+                <td>{{lens.maxFocal}}</td>
+                <td>{{lens.aperture}}</td>
+                <td>{{lens.minAperture}}</td>
+                <td>{{lens.maxAperture}}</td>
+                <td>{{lens.weight}}</td>
+                <td>{{lens.price}}</td>
+                <td><button type="button" ng-click="deleteLens(lens._id)">Delete</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,24 @@
+<h1>Edit Manufacturer</h1>
+<h2>{{manufacturer.name}}</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Mount Name</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="mount in manufacturer.mounts">
+            <td>{{mount}}</td>
+            <td><button ng-click="deleteMount(mount)">Delete Mount</button></td>
+        </tr>
+    </tbody>
+</table>
+<h3>add mount</h3>
+<form ng-submit="addMount()">
+    <p>Mount Name: <input type="text" ng-model="newMount.name"></p>
+    <button type="submit">Add Mount</button>
+</form>
+<br>
+<h3>Type the name of the manufacturer to delete: <input type="text" ng-model="delete.name"></h3>
+<button ng-click="deleteManufacturer()">Delete Manufacturer</button>

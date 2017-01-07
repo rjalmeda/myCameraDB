@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="loginDiv">
+        <form ng-submit="login()">
+            <table>
+                <tr>
+                    <td>
+                        Username
+                    </td>
+                    <td>
+                        <input type="text" ng-model="user.username">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Password
+                    </td>
+                    <td>
+                        <input type="password" ng-model="user.password">
+                    </td>
+                </tr>
+            </table>
+            <button type="submit">Login</button>
+            <a href="#/register"><button type="button">Register</button></a>
+        </form>
+    </div>
+</div>
+
