@@ -4,17 +4,18 @@ var UserSchema = mongoose.Schema({
     password: String,
     email: String,
     alias: String,
-    fk_gearbox: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Gearbox'
+    gearbox: {
+        cameras:[{default: [{}]}],
+        lenses: [{default: [{}]}],
+        accessories: [{default: [{}]}]
     },
     profilePic: String,
-    gearLevel: Number,
-    gearXP: Number,
-    proLevel: Number,
-    proXP: Number,
-    NetworkLevel: Number,
-    NetworkXP: Number,
+    gearLevel: {type: Number, default: 0},
+    gearXP: {type: Number, default: 0},
+    proLevel: {type: Number, default: 0},
+    proXP: {type: Number, default: 0},
+    NetworkLevel: {type: Number, default: 0},
+    NetworkXP: {type: Number, default: 0},
     flickr: String,
     facebook: String,
     twitter: String

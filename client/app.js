@@ -36,6 +36,10 @@ app.config(function($routeProvider){
         templateUrl: '/partials/profile.html',
         controller: 'profileController'
     })
+    .when('/gearbox', {
+        templateUrl: '/partials/gearbox.html',
+        controller: 'gearboxController'
+    })
     .otherwise({
         redirectTo: '/login'
     })

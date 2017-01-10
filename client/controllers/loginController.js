@@ -45,6 +45,9 @@ app.controller('loginController', function($scope, $location, loginFactory){
             loginFactory.register($scope.user, function(data){
                 $scope.user = {};
                 console.log(data);
+                if(data.data.success){
+                    $location.url('/login');
+                }
             })
         }
     };
