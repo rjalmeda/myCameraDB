@@ -1,4 +1,4 @@
-app.controller('sideNavBarController', function($scope, sessionFactory, adminFactory){
+app.controller('sideNavBarController', function($scope, $location, sessionFactory, adminFactory){
     $scope.updateGearbox = function(){
         console.log($scope.user.gearLevel + " here is your gear level")
         if(!$scope.user){
@@ -20,6 +20,9 @@ app.controller('sideNavBarController', function($scope, sessionFactory, adminFac
             console.log("check session");
             $scope.user = data.data.user;
             console.log(data);
+            if(!data.data.success){
+                return $location.url('/login');
+            };
             $scope.updateGearbox();
         })
     };

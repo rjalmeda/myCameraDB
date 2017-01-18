@@ -22,9 +22,61 @@
             
         </div>
         
-        <div class="addGear">
+<!--
+        <div class="addGear" ng-show="addWindow" style="border: 3px solid green; height: 100px; width: 100px;">
             
         </div>
         <button type="button" ng-click="addItemWindow()">Add Item</button>
+-->
+        <div class="addCamera addGear" ng-show="addCameraWindow">
+            
+        </div>
+        
+        <div class="addLens addGear ng-hide" ng-show="addLensWindow">
+            <form ng-submit="addGearboxLens()">
+                <table>
+                    <tr>
+                        <td>Manufacturer: </td>
+                        <td>
+                            <select ng-model="lensManufacturerID" ng-change="changeLensManufacturer()">
+                                <option value="custom">Custom</option>
+                                <option ng-repeat="manufacturer in manufacturers" value="{{manufacturer._id}}">{{manufacturer.name}}</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Lenses:</td>
+                        <td>
+                            <select ng-model="lens.fk_lens">
+                                <option ng-repeat="lens in lenses" value="{{lens._id}}">{{lens.name}}</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Name</td>
+                        <td><input type="text" ng-model="lens.name"></td>
+                    </tr>
+                    <tr>
+                        <td>Serial</td>
+                        <td><input type="text" ng-model="lens.serial"></td>
+                    </tr>
+                    <tr>
+                        <td>Notes</td>
+                        <td><textarea ng-model="lens.notes"></textarea></td>
+                    </tr>
+                </table>
+                <button type="submit">Add Lens</button>
+            </form>
+        </div>
+        
+        <div class="addAccessory addGear ng-hide" ng-show="addAccessoryWindow">
+            
+        </div>
+        
+        <div class="addGearControlBar">
+            <button type="button" ng-click="enableAddCamera()">{{addCameraButton}}</button>
+            <button type="button" ng-click="enableAddLens()">{{addLensButton}}</button>
+            <button type="button" ng-click="enableAddAccessory()">{{addAccessoryButton}}</button>
+        </div>
     </div>
 </div>

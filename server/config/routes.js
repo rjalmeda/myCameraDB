@@ -47,6 +47,18 @@ module.exports = function(app){
     });
     app.get('/checkSessionUser', function(req,res){
         userController.checkSessionUser(req,res);
+    });
+    app.get('/listManufacturers', function(req,res){
+        cameraDBController.listManufacturers(req,res);
+    });
+    app.get('/changeLensManufacturer/:manufacturerID', function(req,res){
+        cameraDBController.changeLensManufacturer(req,res);
+    });
+    app.post('/addGearboxLens', function(req,res){
+        userController.addGearboxLens(req,res);
+    });
+    app.get('/updateGearbox', function(req,res){
+        userController.updateGearbox(req,res);
     })
     
 }

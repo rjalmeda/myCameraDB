@@ -1,15 +1,29 @@
-app.factory('gearboxFactory', function($http, sessionFactory){
+app.factory('gearboxFactory', function($http){
     var factory = {};
     var gearbox = {};
-    factory.updateGearbox = function(){
-        sessionFactory.checkSessionUser(function(data){
-        console.log(data);
-            if(data.data.success){
-                gearbox = data.data.user.gearbox;
-                console.log("gearbox refreshed");
-                console.log(gearbox);
-            }
+    factory.updateGearbox = function(callback){
+        $http.get('/updateGearbox').then(function(data){
+            callback(data);
         })
     };
+    
+    factory.listManufacturers = function(callback){
+        $http.get('/listManufacturers').then(function(data){
+            callback(data);
+        });
+    };
+    
+    factory.changeLensManufacturer = function(manufacturerID, callback){
+        $http.get('/changeLensManufacturer/'+manufacturerID).then(function(data){
+            callback(data);
+        });
+    };
+    
+    factory.addGearboxLens = function(lens, callback){
+        $http.post('/addGearboxLens', lens).then(function(data){
+            callback(data);
+        });
+    };
+    
     return factory;
 })

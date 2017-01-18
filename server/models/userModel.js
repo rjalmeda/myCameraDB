@@ -5,9 +5,17 @@ var UserSchema = mongoose.Schema({
     email: String,
     alias: String,
     gearbox: {
-        cameras:[{default: [{}]}],
-        lenses: [{default: [{}]}],
-        accessories: [{default: [{}]}]
+        cameras:[{}],
+        lenses: [{
+            fk_lens: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'Lens'
+            },
+            name: String,
+            notes: String,
+            serial: String
+        }],
+        accessories: [{}]
     },
     profilePic: String,
     gearLevel: {type: Number, default: 0},

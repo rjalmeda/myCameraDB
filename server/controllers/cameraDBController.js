@@ -91,6 +91,24 @@ module.exports = (function(){
                     return res.json({success: true})
                 }
             })
+        },
+        listManufacturers: function(req,res){
+            Manufacturer.find({}, function(err, manufacturers){
+                if(err){
+                    return res.json({success: false, errors: err});
+                } else {
+                    return res.json({success: true, manufacturers: manufacturers});
+                }
+            })
+        },
+        changeLensManufacturer: function(req,res){
+            Lens.find({fk_manufacturer: req.params.manufacturerID}, function(err, lenses){
+                if(err){
+                    return res.json({success: false, errors: err})
+                } else {
+                    return res.json({success: true, lenses: lenses})
+                }
+            })
         }
     }
 })();
