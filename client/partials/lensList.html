@@ -24,7 +24,14 @@
         <p>Max Aperture: <input type="number" step=0.1 ng-model="lens.maxAperture"></p>
         <p>Weight: <input type="number" step=0.01 ng-model="lens.weight"></p>
         <p>Price: <input type="number" step=0.01 ng-model="lens.price"></p>
-        <button type="submit">Add Lens</button>
+        <p>Year Released <input type="number" ng-model="lens.year"></p>
+        <p>Quarter Released <input type="number" ng-model="lens.quarter"></p>
+        <p>Amazon Keywords <input type="text" ng-model="lens.amazonKeywords"></p>
+        <p>Amazon ASIN <input type="text" ng-model="lens.amazonASIN"></p>
+        <p>gearboxPic <input type="text" ng-model="lens.gearboxPic"></p>
+        <p><img ng-src="{{lens.gearboxPic}}"></p>
+        <button type="submit">Submit</button><br>
+        <button type="button" ng-click="clearLensForm()">Clear Form</button>
     </form>
     <p style="colo:red" ng-repeat="error in errors">{{error}}</p>
 </div>
@@ -43,7 +50,8 @@
                 <th>Max Aperture</th>
                 <th>Weight</th>
                 <th>Price</th>
-                <th>Action</th>
+                <th>Edit</th>
+                <th>Delete</th>
             </tr>
         </thead>
         <tbody>
@@ -59,6 +67,7 @@
                 <td>{{lens.maxAperture}}</td>
                 <td>{{lens.weight}}</td>
                 <td>{{lens.price}}</td>
+                <td><button type="button" ng-click="editLens(lens)">Edit</button></td>
                 <td><button type="button" ng-click="deleteLens(lens._id)">Delete</button></td>
             </tr>
         </tbody>

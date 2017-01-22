@@ -4,7 +4,7 @@ app.controller('amazonAPIController', function($scope, $location, amazonAPIFacto
     $scope.imageURL = "";
     $scope.images = [];
     
-    function (json){
+    function imageHunter(json){
         var imageURLs = [];
         function checkDublicate(item){
             for(var i = 0; i < imageURLs.length; i++){
@@ -73,13 +73,15 @@ app.controller('amazonAPIController', function($scope, $location, amazonAPIFacto
         } else {
             amazonAPIFactory.checkAmazonItem($scope.ASIN, function(data){
                 console.log(data);
-                $scope.item = data.data.results.Items.Item[0];
-                $scope.images = imageHunter(data);
-                if($scope.item.LargeImage){
-                    $scope.imageURL = $scope.item.LargeImage.URL;
-                    console.log($scope.imageURL);
-                }
+                if(data.data.success){
+                    console.log("success item found");
+                    $scope.images = imageHunter(data);
+                    $scope.imageURL = $scope.images[0];
+                } else {
+                    console.log("not successful");
+                };
             });
         };
     };
+    
 });

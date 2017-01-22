@@ -16,6 +16,8 @@ var LensSchema = mongoose.Schema({
     maxAperture: Number,
     weight: Number,
     price: Number,
+    year: Number,
+    quarter: Number,
     amazonKeywords: String,
     amazonASIN: String,
     gearboxPic: String,

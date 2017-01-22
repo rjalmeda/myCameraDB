@@ -27,53 +27,63 @@ app.controller('camerasListController', function($scope, $location, $routeParams
             };
         });
     };
+    
+    $scope.editCamera = function(targetCamera){
+        $scope.camera = targetCamera;
+    };
+    
     $scope.checkManufacturer();
     $scope.addCamera = function(){
-        console.log("addCamera");
-        $scope.errors = [];
         if(!$scope.camera){
-            return console.log('no camera');
-        } else if (!$scope.camera.type){
-            $scope.errors.push('no camera type');
-        } else if (!$scope.camera.name){
-            $scope.errors.push('no camera name');
-        } else if (!$scope.camera.model){
-            $scope.errors.push('no camera model');
-        } else if (!$scope.camera.megapixel){
-            $scope.errors.push('no camera MP');
-        } else if (!$scope.camera.crop){
-            $scope.errors.push('no camera crop');
-        } else if (!$scope.camera.sensor){
-            $scope.errors.push('no camera sensor');
-        } else if (!$scope.camera.weight){
-            $scope.errors.push('no camera weight');
-        } else if (!$scope.camera.price){
-            $scope.errors.push('no camera price');
-        } else if (!$scope.camera.year){
-            $scope.errors.push('no camera year');
-        } else if (!$scope.camera.quarter){
-            $scope.errors.push('no camera quarter');
-        } else {
-            $scope.camera.mountable = [];
-            if(!$scope.mounts){
-                console.log("no mounts chosen");
+            return console.log("fill out the form");
+        }
+        if($scope.camera._id === undefined || $scope.camera._id === "" || $scope.camera._id === null){
+            console.log("addCamera");
+            $scope.errors = [];
+            if (!$scope.camera.type){
+                $scope.errors.push('no camera type');
+            } else if (!$scope.camera.name){
+                $scope.errors.push('no camera name');
+            } else if (!$scope.camera.model){
+                $scope.errors.push('no camera model');
+            } else if (!$scope.camera.megapixel){
+                $scope.errors.push('no camera MP');
+            } else if (!$scope.camera.crop){
+                $scope.errors.push('no camera crop');
+            } else if (!$scope.camera.sensor){
+                $scope.errors.push('no camera sensor');
+            } else if (!$scope.camera.weight){
+                $scope.errors.push('no camera weight');
+            } else if (!$scope.camera.price){
+                $scope.errors.push('no camera price');
+            } else if (!$scope.camera.year){
+                $scope.errors.push('no camera year');
+            } else if (!$scope.camera.quarter){
+                $scope.errors.push('no camera quarter');
             } else {
-                for(var mount in $scope.mounts){
-                    if($scope.mounts[mount]){
-                        $scope.camera.mountable.push(mount);
+                $scope.camera.mountable = [];
+                if(!$scope.mounts){
+                    console.log("no mounts chosen");
+                } else {
+                    for(var mount in $scope.mounts){
+                        if($scope.mounts[mount]){
+                            $scope.camera.mountable.push(mount);
+                        }
                     }
-                }
-                console.log($scope.camera.mountable);
-            };
-            $scope.camera.fk_manufacturer = $scope.manufacturer._id;
-            adminFactory.addCamera($scope.camera, function(data){
-                $scope.camera = {};
-                for(var mounts in $scope.mounts){
-                    $scope.mounts[mount] = false;
+                    console.log($scope.camera.mountable);
                 };
-                console.log(data);
-                $scope.checkCameras();
-            })
+                $scope.camera.fk_manufacturer = $scope.manufacturer._id;
+                adminFactory.addCamera($scope.camera, function(data){
+                    $scope.camera = {};
+                    for(var mounts in $scope.mounts){
+                        $scope.mounts[mount] = false;
+                    };
+                    console.log(data);
+                    $scope.checkCameras();
+                })
+            };
+        } else {
+            console.log("update");
         }
     };
     $scope.deleteCamera = function(cameraID){
@@ -81,5 +91,10 @@ app.controller('camerasListController', function($scope, $location, $routeParams
             console.log(data);
             $scope.checkCameras();
         });
+    };
+    
+    $scope.clearCameraForm = function(){
+        console.log("Clear Form");
+        $scope.camera = {};
     };
 })

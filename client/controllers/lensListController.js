@@ -22,6 +22,11 @@ app.controller('lensListController', function($scope, $location, $routeParams, a
             };
         });
     };
+    
+    $scope.editLens = function(targetLens){
+        $scope.lens = targetLens;
+    };
+    
     $scope.checkManufacturer();
     $scope.addLens = function(){
         console.log("add Lens")
@@ -67,4 +72,8 @@ app.controller('lensListController', function($scope, $location, $routeParams, a
             $scope.checkLenses();
         });
     };
+    $scope.clearLensForm = function(){
+        $scope.lens = {};
+    };
+    
 });
