@@ -5,7 +5,15 @@ var UserSchema = mongoose.Schema({
     email: String,
     alias: String,
     gearbox: {
-        cameras:[{}],
+        cameras:[{
+            fk_camera: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'Camera'
+            },
+            name: String,
+            notes: String,
+            serial: String
+        }],
         lenses: [{
             fk_lens: {
                 type: mongoose.Schema.Types.ObjectId,

@@ -1,6 +1,7 @@
 var userController = require('./../controllers/userController.js');
 var cameraDBController = require('./../controllers/cameraDBController.js');
 var manufacturerController = require('./../controllers/manufacturerController.js');
+var amazonController = require('./../controllers/amazonController.js');
 
 module.exports = function(app){
     app.post('/register', function(req,res){
@@ -54,11 +55,23 @@ module.exports = function(app){
     app.get('/changeLensManufacturer/:manufacturerID', function(req,res){
         cameraDBController.changeLensManufacturer(req,res);
     });
+    app.get('/changeCameraManufacturer/:manufacturerID/:cameraType', function(req,res){
+        cameraDBController.changeCameraManufacturer(req,res);
+    });
+    app.get('/changeCameraManufacturer/:manufacturerID/', function(req,res){
+        cameraDBController.changeCameraManufacturer(req,res);
+    });
     app.post('/addGearboxLens', function(req,res){
         userController.addGearboxLens(req,res);
     });
+    app.post('/addGearboxCamera', function(req,res){
+        userController.addGearboxCamera(req,res);
+    });
     app.get('/updateGearbox', function(req,res){
         userController.updateGearbox(req,res);
+    });
+    app.get('/checkAmazonItem/:ASIN', function(req,res){
+        amazonController.checkAmazonItem(req,res);
     })
     
 }

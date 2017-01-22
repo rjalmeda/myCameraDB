@@ -19,11 +19,22 @@ app.factory('gearboxFactory', function($http){
         });
     };
     
+    factory.changeCameraManufacturer = function(manufacturerID, type, callback){
+        $http.get('/changeCameraManufacturer/'+manufacturerID+'/'+type).then(function(data){
+            callback(data);
+        });
+    };
+    
     factory.addGearboxLens = function(lens, callback){
         $http.post('/addGearboxLens', lens).then(function(data){
             callback(data);
         });
     };
     
+    factory.addGearboxCamera = function(camera, callback){
+        $http.post('/addGearboxCamera', camera).then(function(data){
+            callback(data);
+        });
+    };
     return factory;
 })

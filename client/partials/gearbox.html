@@ -29,10 +29,54 @@
         <button type="button" ng-click="addItemWindow()">Add Item</button>
 -->
         <div class="addCamera addGear" ng-show="addCameraWindow">
-            
+            <h3>Add Camera</h3>
+            <form ng-submit="addGearboxCamera()">
+                <table>
+                    <tr>
+                        <td>Manufacturer: </td>
+                        <td>
+                            <select ng-model="cameraManufacturerID" ng-change="changeCameraManufacturer()">
+                                <option value="custom">Custom</option>
+                                <option ng-repeat="manufacturer in manufacturers" value="{{manufacturer._id}}">{{manufacturer.name}}</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Type: </td>
+                        <td>
+                            <select ng-model="camera.type" ng-change="changeCameraManufacturer()">
+                                <option value="custom">Custom</option>
+                                <option ng-repeat="type in types" value="{{type}}">{{type}}</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Cameras: </td>
+                        <td>
+                            <select ng-model="camera.fk_camera">
+                                <option ng-repeat="listCamera in cameras" value="{{listCamera._id}}">{{listCamera.name}}</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Name: </td>
+                        <td><input type="text" ng-model="camera.name"></td>
+                    </tr>
+                    <tr>
+                        <td>Serial: </td>
+                        <td><input type="text" ng-model="camera.serial"></td>
+                    </tr>
+                    <tr>
+                        <td>Notes: </td>
+                        <td><textarea ng-model="camera.notes"></textarea></td>
+                    </tr>
+                </table>
+                <button type="submit">Add Camera</button>
+            </form>
         </div>
         
         <div class="addLens addGear ng-hide" ng-show="addLensWindow">
+            <h3>Add Lens</h3>
             <form ng-submit="addGearboxLens()">
                 <table>
                     <tr>
@@ -48,7 +92,7 @@
                         <td>Lenses:</td>
                         <td>
                             <select ng-model="lens.fk_lens">
-                                <option ng-repeat="lens in lenses" value="{{lens._id}}">{{lens.name}}</option>
+                                <option ng-repeat="listLens in lenses" value="{{listLens._id}}">{{listLens.name}}</option>
                             </select>
                         </td>
                     </tr>

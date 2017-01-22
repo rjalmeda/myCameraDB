@@ -1,0 +1,11 @@
+<h2>Amazon Item Checker</h2>
+<form ng-submit="checkAmazonItem()">
+    <p>ASIN# <input type="text" ng-model="ASIN"> <button type="submit">Check</button></p>
+</form><br>
+<img src="{{imageURL}}">
+
+<h2>All images</h2>
+<div class="amazonImage" style="padding: 5px; border: 2px solid black" ng-repeat="image in images">
+    <img ng-src="{{image}}">
+    <p>{{image}}</p>
+</div>

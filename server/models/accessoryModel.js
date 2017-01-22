@@ -9,7 +9,12 @@ var AccessorySchema = mongoose.Schema({
     weight: String,
     price: String,
     year: Number,
-    quarter: Number
+    quarter: Number,
+    amazonKeywords: String,
+    amazonASIN: String,
+    gearboxPic: String,
+    pics: [String],
+    infoLink: String
     
 });
 mongoose.model('Accessory', AccessorySchema)

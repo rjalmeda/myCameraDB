@@ -11,4 +11,9 @@ var BagSchema = mongoose.Schema({
     },
     volumeCap: Number,
     weight: Number,
+    amazonKeywords: String,
+    amazonASIN: String,
+    gearboxPic: String,
+    pics: [String],
+    infoLink: String
 });

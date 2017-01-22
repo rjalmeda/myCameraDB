@@ -62,6 +62,10 @@ module.exports = (function(){
                     path: 'gearbox.lenses.fk_lens',
                     model: 'Lens'
                 })
+                .populate({
+                    path: 'gearbox.cameras.fk_camera',
+                    model: 'Camera'
+                })
                 .exec(function(err, user){
                     if(err){
                         console.log("2");
@@ -90,6 +94,35 @@ module.exports = (function(){
                             }
                         };
                         user.gearbox.lenses.push(req.body);
+                        user.save(function(err1){
+                            if(err1){
+                                return res.json({success: false, user: user})
+                            } else {
+                                return res.json({success: true, user: user})
+                            }
+                        })
+                    }
+                })
+            }
+        },
+        
+        addGearboxCamera: function(req,res){
+            console.log(req.body);
+            if(!req.session.user){
+                return res.json({success: false, user: "none logged in"})
+            } else {
+                User.findOne({_id: req.session.user._id}, function(err, user){
+                    if(err){
+                        return res.json({success: false, message: "no user logged in", session: req.session});
+                    } else if(!user){
+                        return res.json({success: false, message: "no user logged in", session: req.session});
+                    } else {
+                        for(var i = 0; i < user.gearbox.cameras.length; i++){
+                            if(req.body.serial === user.gearbox.cameras[i].serial && req.body.fk_camera === usr.gearbox.cameras[i].fk_camera){
+                                return res.json({success: false, message: "identical camera already added"})
+                            };
+                        };
+                        user.gearbox.cameras.push(req.body);
                         user.save(function(err1){
                             if(err1){
                                 return res.json({success: false, user: user})

@@ -109,6 +109,21 @@ module.exports = (function(){
                     return res.json({success: true, lenses: lenses})
                 }
             })
+        },
+        changeCameraManufacturer: function(req,res){
+            var type;
+            if(!req.params.cameraType){
+                type = "";
+            } else {
+                type = req.params.cameraType;
+            }
+            Camera.find({fk_manufacturer: req.params.manufacturerID, type: type}, function(err, cameras){
+                if(err){
+                    return res.json({success: false, errors:err})
+                } else {
+                    return res.json({success: true, cameras: cameras})
+                }
+            })
         }
     }
 })();

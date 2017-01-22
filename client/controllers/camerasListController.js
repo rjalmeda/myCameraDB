@@ -7,7 +7,7 @@ app.controller('camerasListController', function($scope, $location, $routeParams
         adminFactory.checkCameras($scope.manufacturer._id, function(data){
             console.log(data);
             if(data.data.success){
-                $scope.cameras = data.data.cameras
+                $scope.cameras = data.data.cameras;
             };
         });
     };
@@ -56,16 +56,21 @@ app.controller('camerasListController', function($scope, $location, $routeParams
         } else {
             $scope.camera.mountable = [];
             if(!$scope.mounts){
-                return $scope.errors.push('no mounts chosen');
+                console.log("no mounts chosen");
             } else {
                 for(var mount in $scope.mounts){
-                    $scope.camera.mountable.push(mount);
+                    if($scope.mounts[mount]){
+                        $scope.camera.mountable.push(mount);
+                    }
                 }
                 console.log($scope.camera.mountable);
             };
             $scope.camera.fk_manufacturer = $scope.manufacturer._id;
             adminFactory.addCamera($scope.camera, function(data){
                 $scope.camera = {};
+                for(var mounts in $scope.mounts){
+                    $scope.mounts[mount] = false;
+                };
                 console.log(data);
                 $scope.checkCameras();
             })

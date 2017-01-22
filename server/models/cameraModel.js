@@ -11,9 +11,16 @@ var CameraSchema = mongoose.Schema({
     crop: Number,
     sensor: String,
     mountable: [String],
+    fixedLens: String,
+    equivLens: String,
     weight: Number,
     price: Number,
     year: Number,
-    quarter: Number
+    quarter: Number,
+    amazonKeywords: String,
+    amazonASIN: String,
+    gearboxPic: String,
+    pics: [String],
+    infoLink: String
 });
 mongoose.model('Camera', CameraSchema);

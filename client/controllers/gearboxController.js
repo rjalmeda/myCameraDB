@@ -20,6 +20,18 @@ app.controller('gearboxController', function($scope, $location, gearboxFactory){
     $scope.addAccessoryButton = "Add Accessory";
     $scope.manufacturers = [];
     $scope.lenses = [];
+    $scope.type = "";
+    $scope.types = [
+        'DSLR',
+        'Mirrorless',
+        'Rangefinder',
+        'Medium Format',
+        'Point & Shoot',
+        'Film SLR',
+        'Film Point & Shoot',
+        'Action'
+    ];
+    
     $scope.listManufacturers = function(){
         gearboxFactory.listManufacturers(function(data){
             console.log(data);
@@ -30,15 +42,33 @@ app.controller('gearboxController', function($scope, $location, gearboxFactory){
     
     $scope.changeLensManufacturer = function(){
         if($scope.lensManufacturerID === "custom"){
-            return console.log("custom");
+            return console.log("custom lens");
         }
-        console.log("CHANGE");
+        console.log("change lens manufacturer");
         console.log($scope.lensManufacturerID);
+        
         gearboxFactory.changeLensManufacturer($scope.lensManufacturerID, function(data){
             console.log(data);
             $scope.lenses = data.data.lenses;
         })
     };
+    
+    $scope.changeCameraManufacturer = function(){
+        if($scope.cameraManufacturerID === "custom"){
+            return console.log("custom camera");
+        }
+        console.log("Change camera manufacturer");
+        console.log($scope.cameraManufacturerID);
+        if(!$scope.camera || !$scope.camera.type){
+            $scope.camera = {
+                type: ""
+            };
+        }
+        gearboxFactory.changeCameraManufacturer($scope.cameraManufacturerID, $scope.camera.type, function(data){
+            console.log(data);
+            $scope.cameras = data.data.cameras;
+        })
+    }
     
     $scope.enableAddCamera = function(){
         if(!$scope.addCameraWindow){
@@ -85,5 +115,14 @@ app.controller('gearboxController', function($scope, $location, gearboxFactory){
             $scope.lens = {};
             updateGearbox();
         });
+    };
+    
+    $scope.addGearboxCamera = function(){
+        console.log($scope.camera);
+        gearboxFactory.addGearboxCamera($scope.camera, function(data){
+            console.log(data);
+            $scope.camera = {};
+            updateGearbox();
+        })
     };
 })

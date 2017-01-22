@@ -40,6 +40,10 @@ app.config(function($routeProvider){
         templateUrl: '/partials/gearbox.html',
         controller: 'gearboxController'
     })
+    .when('/amazonAPIchecker', {
+        templateUrl: '/partials/amazonAPIchecker.html',
+        controller: 'amazonAPIController'
+    })
     .otherwise({
         redirectTo: '/login'
     })
