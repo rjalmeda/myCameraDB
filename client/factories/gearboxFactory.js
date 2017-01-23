@@ -36,5 +36,18 @@ app.factory('gearboxFactory', function($http){
             callback(data);
         });
     };
+    
+    factory.clearGearboxCameras = function(callback){
+        $http.delete('/clearGearboxCameras').then(function(data){
+            callback(data);
+        });
+    };
+    
+    factory.clearGearboxLenses = function(callback){
+        $http.delete('/clearGearboxLenses').then(function(data){
+            callback(data);
+        });
+    };
+    
     return factory;
 })

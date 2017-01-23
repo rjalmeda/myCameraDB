@@ -6,15 +6,21 @@
     </side-nav-bar>
 
     <div class="mainWindow">
-        <div class="cameras">
-            
+        <div class="gearboxCameras">
+            <div class="gearItem" ng-repeat="camera in cameras">
+                <h3>{{camera.name}}</h3>
+                <img class="gearItem" ng-src="{{camera.fk_camera.gearboxPic}}">
+            </div>
         </div>
         
-        <div class="lenses">
-            
+        <div class="gearboxLenses">
+            <div class="gearItem" ng-repeat="lens in lenses">
+                <h3>{{lens.name}}</h3>
+                <img class="gearItem" ng-src="{{lens.fk_lens.gearboxPic}}">
+            </div>
         </div>
         
-        <div class="bags">
+        <div class="gearboxBags">
             
         </div>
         
@@ -54,7 +60,7 @@
                         <td>Cameras: </td>
                         <td>
                             <select ng-model="camera.fk_camera">
-                                <option ng-repeat="listCamera in cameras" value="{{listCamera._id}}">{{listCamera.name}}</option>
+                                <option ng-repeat="listCamera in targetCameras" value="{{listCamera._id}}">{{listCamera.name}}</option>
                             </select>
                         </td>
                     </tr>
@@ -92,7 +98,7 @@
                         <td>Lenses:</td>
                         <td>
                             <select ng-model="lens.fk_lens">
-                                <option ng-repeat="listLens in lenses" value="{{listLens._id}}">{{listLens.name}}</option>
+                                <option ng-repeat="listLens in targetLenses" value="{{listLens._id}}">{{listLens.name}}</option>
                             </select>
                         </td>
                     </tr>
@@ -121,6 +127,10 @@
             <button type="button" ng-click="enableAddCamera()">{{addCameraButton}}</button>
             <button type="button" ng-click="enableAddLens()">{{addLensButton}}</button>
             <button type="button" ng-click="enableAddAccessory()">{{addAccessoryButton}}</button>
+        </div>
+        <div>
+            <button type="button" ng-click="clearGearboxCameras()">Clear Cameras</button>
+            <button type="button" ng-click="clearGearboxLenses()">Clear Lenses</button>
         </div>
     </div>
 </div>

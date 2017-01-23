@@ -72,6 +72,12 @@ module.exports = function(app){
     });
     app.get('/checkAmazonItem/:ASIN', function(req,res){
         amazonController.checkAmazonItem(req,res);
-    })
+    });
+    app.delete('/clearGearboxCameras', function(req,res){
+        userController.clearGearboxCameras(req,res);
+    });
+    app.delete('/clearGearboxLenses', function(req,res){
+        userController.clearGearboxLenses(req,res);
+    });
     
 }

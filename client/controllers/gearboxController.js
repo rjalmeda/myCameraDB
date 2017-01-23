@@ -1,12 +1,6 @@
 app.controller('gearboxController', function($scope, $location, gearboxFactory){
     
     
-    function updateGearbox(){
-        gearboxFactory.updateGearbox(function(data){
-            console.log(data);
-        });
-    };
-    updateGearbox();
 //    $scope.addWindow = false;
 //    $scope.addItemWindow = function(){
 //        console.log("WINDOW!");
@@ -20,6 +14,8 @@ app.controller('gearboxController', function($scope, $location, gearboxFactory){
     $scope.addAccessoryButton = "Add Accessory";
     $scope.manufacturers = [];
     $scope.lenses = [];
+    $scope.cameras = [];
+    $scope.gearbox = {};
     $scope.type = "";
     $scope.types = [
         'DSLR',
@@ -31,6 +27,16 @@ app.controller('gearboxController', function($scope, $location, gearboxFactory){
         'Film Point & Shoot',
         'Action'
     ];
+    
+    function updateGearbox(){
+        gearboxFactory.updateGearbox(function(data){
+            console.log(data);
+            $scope.gearbox = data.data.user.gearbox;
+            $scope.lenses = $scope.gearbox.lenses;
+            $scope.cameras = $scope.gearbox.cameras;
+        });
+    };
+    updateGearbox();
     
     $scope.listManufacturers = function(){
         gearboxFactory.listManufacturers(function(data){
@@ -49,7 +55,7 @@ app.controller('gearboxController', function($scope, $location, gearboxFactory){
         
         gearboxFactory.changeLensManufacturer($scope.lensManufacturerID, function(data){
             console.log(data);
-            $scope.lenses = data.data.lenses;
+            $scope.targetLenses = data.data.lenses;
         })
     };
     
@@ -66,7 +72,7 @@ app.controller('gearboxController', function($scope, $location, gearboxFactory){
         }
         gearboxFactory.changeCameraManufacturer($scope.cameraManufacturerID, $scope.camera.type, function(data){
             console.log(data);
-            $scope.cameras = data.data.cameras;
+            $scope.targetCameras = data.data.cameras;
         })
     }
     
@@ -125,4 +131,18 @@ app.controller('gearboxController', function($scope, $location, gearboxFactory){
             updateGearbox();
         })
     };
+    
+    $scope.clearGearboxCameras = function(){
+        gearboxFactory.clearGearboxCameras(function(data){
+            console.log(data);
+            updateGearbox();
+        })
+    };
+    
+    $scope.clearGearboxLenses = function(){
+        gearboxFactory.clearGearboxLenses(function(data){
+            console.log(data);
+            updateGearbox();
+        })
+    }
 })

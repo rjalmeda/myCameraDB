@@ -22,6 +22,15 @@ var LensSchema = mongoose.Schema({
     amazonASIN: String,
     gearboxPic: String,
     pics: [String],
-    infoLink: String
+    infoLink: String,
+    fk_itemLevel: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'ItemeLevel'
+    },
+    xp: Number,
+    fk_badges: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Badge'
+    }]
 })
 mongoose.model('Lens', LensSchema);

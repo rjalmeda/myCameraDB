@@ -44,3 +44,29 @@ div.addGearControlBar {
     border: 2px solid black;
     
 }
+div.gearboxCameras {
+    border: 2px solid red;
+}
+div.gearboxLenses {
+    border: 2px solid blue;
+}
+div.gearboxBags {
+    border: 2px solid yellow;
+}
+div.gearItem {
+    border: 2px solid gray;
+    border-radius: 12px;
+    min-height: 100px;
+    min-width: 75px;
+    padding: 12px;
+    display: inline-block;
+    margin: 5px;
+    vertical-align: top;
+    overflow: hidden;
+    background: white;
+}
+img.gearItem{
+    width: 120px;
+    display: block;
+    margin: auto;
+}

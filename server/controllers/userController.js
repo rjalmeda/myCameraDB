@@ -133,6 +133,48 @@ module.exports = (function(){
                     }
                 })
             }
+        },
+        
+        clearGearboxCameras: function(req,res){
+            if(!req.session.user){
+                return res.json({success: false, user: "none logged in"});
+            } else {
+                User.findOne({_id: req.session.user._id}, function(err, user){
+                    if(err){
+                        return res.json({success: false, errors: err});
+                    } else {
+                        user.gearbox.cameras = [];
+                        user.save(function(err1){
+                            if(err1){
+                                return res.json({success: false, errors: err1});
+                            } else {
+                                return res.json({success: true, user: user});
+                            }
+                        })
+                    }
+                })
+            }
+        },
+        
+        clearGearboxLenses: function(req,res){
+            if(!req.session.user){
+                return res.json({success: false, user: "none logged in"});
+            } else {
+                User.findOne({_id: req.session.user._id}, function(err, user){
+                    if(err){
+                        return res.json({success: false, errors: err});
+                    } else {
+                        user.gearbox.lenses = [];
+                        user.save(function(err1){
+                            if(err1){
+                                return res.json({success: false, errors: err1});
+                            } else {
+                                return res.json({success: true, user: user});
+                            }
+                        })
+                    }
+                })
+            }
         }
         
     }

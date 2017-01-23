@@ -4,13 +4,13 @@ app.controller('sideNavBarController', function($scope, $location, sessionFactor
         if(!$scope.user){
             return console.log("user not logged in");
         } else if ($scope.user.gearLevel === 0){
-            $scope.gearbox = "camera pouch";
+            $scope.gearboxName = "camera pouch";
         } else if ($scope.user.gearLevel === 1){
-            $scope.gearbox = "Shoe Box";
+            $scope.gearboxName = "Shoe Box";
         } else if ($scope.user.gearLevel === 2){
-            $scope.gearbox = "Gear Shelf";
+            $scope.gearboxName = "Gear Shelf";
         } else {
-            $scope.gearbox = "Gear Box";
+            $scope.gearboxName = "Gear Box";
             console.log("else");
         }
     };
@@ -27,6 +27,6 @@ app.controller('sideNavBarController', function($scope, $location, sessionFactor
         })
     };
     checkSessionUser();
-    $scope.gearbox = "Gear Box";
+    $scope.gearboxName = "Gear Box";
 //    $scope.updateGearbox();
 })
