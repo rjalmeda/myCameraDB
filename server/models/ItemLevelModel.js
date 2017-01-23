@@ -1,6 +1,5 @@
 var mongoose = require('mongoose');
 var ItemLevelSchema = mongoose.Schema({
-    name: String,
-    
+    name: String
 });
 mongoose.model('ItemLevel', ItemLevelSchema);

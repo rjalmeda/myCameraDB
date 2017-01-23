@@ -17,3 +17,4 @@ var BagSchema = mongoose.Schema({
     pics: [String],
     infoLink: String
 });
+mongoose.model('Bag', BagSchema);
