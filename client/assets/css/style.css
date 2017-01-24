@@ -53,20 +53,60 @@ div.gearboxLenses {
 div.gearboxBags {
     border: 2px solid yellow;
 }
+div.gearboxRow {
+    min-height: 120px;
+    display: block;
+    padding: 25px;
+}
 div.gearItem {
     border: 2px solid gray;
     border-radius: 12px;
-    min-height: 100px;
-    min-width: 75px;
-    padding: 12px;
-    display: inline-block;
-    margin: 5px;
     vertical-align: top;
     overflow: hidden;
     background: white;
 }
-img.gearItem{
-    width: 120px;
+img.gearItem {
+    width: 75px;
     display: block;
     margin: auto;
+}
+div.addGearboxItem {
+    vertical-align: top;
+    display: inline-block;
+}
+
+div.flippable, div.flipFront, div.flipBack {
+    width: 120px;
+    height: 150px;
+}
+
+div.flippable {
+    perspective: 1000px;
+    display: inline-block;
+}
+
+div.flipCard {
+    transition: 0.5s;
+    transform-style: preserve-3d;
+    position: relative;
+}
+
+div.flipped {
+    transform: rotateY(180deg);
+    
+}
+
+div.flipFront, div.flipBack {
+    backface-visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+div.flipFront {
+    transform: rotateY(0deg);
+}
+
+div.flipBack {
+    transform: rotateY(180deg);
 }

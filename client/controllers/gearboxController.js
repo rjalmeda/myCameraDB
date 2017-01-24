@@ -27,6 +27,8 @@ app.controller('gearboxController', function($scope, $location, gearboxFactory){
         'Film Point & Shoot',
         'Action'
     ];
+    $scope.newCamera = {};
+    $scope.newCameraPic = "";
     
     function updateGearbox(){
         gearboxFactory.updateGearbox(function(data){
@@ -65,50 +67,58 @@ app.controller('gearboxController', function($scope, $location, gearboxFactory){
         }
         console.log("Change camera manufacturer");
         console.log($scope.cameraManufacturerID);
-        if(!$scope.camera || !$scope.camera.type){
-            $scope.camera = {
+        if(!$scope.targetCamera || !$scope.targetCamera.type){
+            $scope.targetCamera = {
                 type: ""
             };
         }
-        gearboxFactory.changeCameraManufacturer($scope.cameraManufacturerID, $scope.camera.type, function(data){
+        gearboxFactory.changeCameraManufacturer($scope.cameraManufacturerID, $scope.targetCamera.type, function(data){
             console.log(data);
             $scope.targetCameras = data.data.cameras;
         })
-    }
-    
-    $scope.enableAddCamera = function(){
-        if(!$scope.addCameraWindow){
-            console.log("add Camera");
-            $scope.addCameraWindow = true;
-            $scope.addCameraButton = "cancel";
-        } else {
-            console.log("disable camera");
-            $scope.addCameraWindow = false;
-            $scope.addCameraButton = "Add Camera";
-        }
     };
     
-    $scope.enableAddLens = function(){
-        if(!$scope.addLensWindow){
-            $scope.addLensWindow = true;
-            $scope.addLensButton = "cancel";
-        } else {
-            $scope.addLensWindow = false;
-            $scope.addLensButton = "Add Lens";
-        }
+    $scope.updateNewCameraPicture = function(){
+        console.log($scope.newListCamera);
+        var data = $scope.newListCamera.split('<->');
+        $scope.newCamera.fk_item = data[0];
+        $scope.newCameraPic = data[1];
+        
     };
     
-    $scope.enableAddAccessory = function(){
-        if(!$scope.addAccessoryWindow){
-            console.log("toggled on");
-            $scope.addAccessoryWindow = true;
-            $scope.addAccessoryButton = "cancel";
-        } else {
-            console.log("toggled Off");
-            $scope.addAccessoryWindow = false;
-            $scope.addAccessoryButton = "Add Accessory";
-        }
-    };
+//    $scope.enableAddCamera = function(){
+//        if(!$scope.addCameraWindow){
+//            console.log("add Camera");
+//            $scope.addCameraWindow = true;
+//            $scope.addCameraButton = "cancel";
+//        } else {
+//            console.log("disable camera");
+//            $scope.addCameraWindow = false;
+//            $scope.addCameraButton = "Add Camera";
+//        }
+//    };
+//    
+//    $scope.enableAddLens = function(){
+//        if(!$scope.addLensWindow){
+//            $scope.addLensWindow = true;
+//            $scope.addLensButton = "cancel";
+//        } else {
+//            $scope.addLensWindow = false;
+//            $scope.addLensButton = "Add Lens";
+//        }
+//    };
+//    
+//    $scope.enableAddAccessory = function(){
+//        if(!$scope.addAccessoryWindow){
+//            console.log("toggled on");
+//            $scope.addAccessoryWindow = true;
+//            $scope.addAccessoryButton = "cancel";
+//        } else {
+//            console.log("toggled Off");
+//            $scope.addAccessoryWindow = false;
+//            $scope.addAccessoryButton = "Add Accessory";
+//        }
+//    };
     
     $scope.shoutout = function(){
         console.log("shout out");
@@ -144,5 +154,25 @@ app.controller('gearboxController', function($scope, $location, gearboxFactory){
             console.log(data);
             updateGearbox();
         })
-    }
+    };
+    
+    $scope.addCameraWindow = false;
+    $scope.addLensWindow = false;
+    $scope.addBagWindow = false;
+    
+    $scope.toggleAddCamera = function(){
+        $scope.addCameraWindow = !$scope.addCameraWindow;
+    };
+    
+    $scope.toggleAddLens = function(){
+        $scope.addLensWindow = !$scope.addLensWindow;
+    };
+    
+    $scope.toggleAddBag = function(){
+        $scope.addBagWindow = !$scope.addBagWindow;
+    };
+    
+    $scope.ping = function(){
+        console.log("ping");
+    };
 })
