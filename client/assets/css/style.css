@@ -27,7 +27,7 @@ div.sideNavBar {
 div.mainWindow {
     display: inline-block;
     width: 1300px;
-    background: lightgray;
+    background: white;
     border: 2px solid green;
 }
 div.addGear {
@@ -70,9 +70,13 @@ img.gearItem {
     display: block;
     margin: auto;
 }
+
 div.addGearboxItem {
     vertical-align: top;
     display: inline-block;
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 5px;
 }
 
 div.flippable, div.flipFront, div.flipBack {

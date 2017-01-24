@@ -24,15 +24,22 @@ app.factory('gearboxFactory', function($http){
             callback(data);
         });
     };
+//    <--- old functions for adding gear --->
+//    factory.addGearboxLens = function(lens, callback){
+//        $http.post('/addGearboxLens', lens).then(function(data){
+//            callback(data);
+//        });
+//    };
+//    
+//    factory.addGearboxCamera = function(camera, callback){
+//        $http.post('/addGearboxCamera', camera).then(function(data){
+//            callback(data);
+//        });
+//    };
+//    
     
-    factory.addGearboxLens = function(lens, callback){
-        $http.post('/addGearboxLens', lens).then(function(data){
-            callback(data);
-        });
-    };
-    
-    factory.addGearboxCamera = function(camera, callback){
-        $http.post('/addGearboxCamera', camera).then(function(data){
+    factory.addGearboxItem = function(item, callback){
+        $http.post('/addGearboxItem', item).then(function(data){
             callback(data);
         });
     };

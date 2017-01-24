@@ -55,5 +55,10 @@ app.factory('adminFactory', function($http){
             callback(data);
         });
     };
+    factory.checkBags = function(manufacturerID, callback){
+        $http.get('/checkBags/' + manufacturerID).then(function(data){
+            callback(data);
+        });
+    };
     return factory;
 })

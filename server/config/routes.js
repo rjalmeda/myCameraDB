@@ -61,12 +61,19 @@ module.exports = function(app){
     app.get('/changeCameraManufacturer/:manufacturerID/', function(req,res){
         cameraDBController.changeCameraManufacturer(req,res);
     });
-    app.post('/addGearboxLens', function(req,res){
-        userController.addGearboxLens(req,res);
+    
+//    <--- old gear addd routes --->
+//    app.post('/addGearboxLens', function(req,res){
+//        userController.addGearboxLens(req,res);
+//    });
+//    app.post('/addGearboxCamera', function(req,res){
+//        userController.addGearboxCamera(req,res);
+//    });
+    
+    app.post('/addGearboxItem', function(req,res){
+        userController.addGearboxItem(req,res);
     });
-    app.post('/addGearboxCamera', function(req,res){
-        userController.addGearboxCamera(req,res);
-    });
+    
     app.get('/updateGearbox', function(req,res){
         userController.updateGearbox(req,res);
     });
@@ -79,5 +86,7 @@ module.exports = function(app){
     app.delete('/clearGearboxLenses', function(req,res){
         userController.clearGearboxLenses(req,res);
     });
-    
+    app.get('/checkBags/:manufacturerID', function(req,res){
+        cameraDBController.checkBags(req,res);
+    });
 }

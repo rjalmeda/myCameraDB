@@ -33,7 +33,7 @@ var UserSchema = mongoose.Schema({
             fk_item: [{
                 type: mongoose.Schema.Types.ObjectId,
                 ref: 'Item'
-            }],
+            }]
         },
         lenses: {
             fk_item: [{

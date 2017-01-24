@@ -6,6 +6,8 @@ app.controller('gearboxController', function($scope, $location, gearboxFactory){
 //        console.log("WINDOW!");
 //        $scope.addWindow = true;
 //    };
+    $scope.newCameraErrors = [];
+    $scope.newLensErrors = [];
     $scope.addCameraWindow = false;
     $scope.addCameraButton = "Add Camera";
     $scope.addLensWindow = false;
@@ -15,6 +17,7 @@ app.controller('gearboxController', function($scope, $location, gearboxFactory){
     $scope.manufacturers = [];
     $scope.lenses = [];
     $scope.cameras = [];
+    $scope.bags = [];
     $scope.gearbox = {};
     $scope.type = "";
     $scope.types = [
@@ -29,13 +32,16 @@ app.controller('gearboxController', function($scope, $location, gearboxFactory){
     ];
     $scope.newCamera = {};
     $scope.newCameraPic = "";
+    $scope.newLens = {};
+    $scope.newLensPic = "";
     
     function updateGearbox(){
         gearboxFactory.updateGearbox(function(data){
             console.log(data);
             $scope.gearbox = data.data.user.gearbox;
-            $scope.lenses = $scope.gearbox.lenses;
-            $scope.cameras = $scope.gearbox.cameras;
+            $scope.lenses = $scope.gearbox.lenses.fk_item;
+            $scope.cameras = $scope.gearbox.cameras.fk_item;
+            $scope.bags = $scope.gearbox.bags.fk_item;
         });
     };
     updateGearbox();
@@ -86,6 +92,13 @@ app.controller('gearboxController', function($scope, $location, gearboxFactory){
         
     };
     
+    $scope.updateNewLensPicture = function(){
+        console.log($scope.newListLens);
+        var data = $scope.newListLens.split('<->');
+        $scope.newLens.fk_item = data[0];
+        $scope.newLensPic = data[1];
+    }
+    
 //    $scope.enableAddCamera = function(){
 //        if(!$scope.addCameraWindow){
 //            console.log("add Camera");
@@ -124,23 +137,24 @@ app.controller('gearboxController', function($scope, $location, gearboxFactory){
         console.log("shout out");
     };
     
-    $scope.addGearboxLens = function(){
-        console.log($scope.lens);
-        gearboxFactory.addGearboxLens($scope.lens, function(data){
-            console.log(data);
-            $scope.lens = {};
-            updateGearbox();
-        });
-    };
-    
-    $scope.addGearboxCamera = function(){
-        console.log($scope.camera);
-        gearboxFactory.addGearboxCamera($scope.camera, function(data){
-            console.log(data);
-            $scope.camera = {};
-            updateGearbox();
-        })
-    };
+//    <----- old gear add functions --->
+//    $scope.addGearboxLens = function(){
+//        console.log($scope.lens);
+//        gearboxFactory.addGearboxLens($scope.lens, function(data){
+//            console.log(data);
+//            $scope.lens = {};
+//            updateGearbox();
+//        });
+//    };
+//    
+//    $scope.addGearboxCamera = function(){
+//        console.log($scope.camera);
+//        gearboxFactory.addGearboxCamera($scope.camera, function(data){
+//            console.log(data);
+//            $scope.camera = {};
+//            updateGearbox();
+//        })
+//    };
     
     $scope.clearGearboxCameras = function(){
         gearboxFactory.clearGearboxCameras(function(data){
@@ -174,5 +188,63 @@ app.controller('gearboxController', function($scope, $location, gearboxFactory){
     
     $scope.ping = function(){
         console.log("ping");
+    };
+    
+    $scope.addGearboxItem = function(type){
+        console.log("add ITEM!");
+        if(type === 'camera'){
+            $scope.newCameraErrors = [];
+            if(!$scope.newCamera){
+                $scope.newCameraErrors.push("New Camera is empty");
+            };
+            if(!$scope.newCamera.name || $scope.newCamera.name.length < 3){
+                $scope.newCameraErrors.push("Please add an item name");
+            };
+            if(!$scope.newCamera.serial){
+                $scope.newCameraErrors.push("no camera serial");
+            };
+            if(!$scope.newCamera.fk_item || $scope.newCamera.fk_item.length < 4){
+                $scope.newCameraErrors.push("please choose a camera from the list");
+            };
+            if($scope.newCameraErrors.length > 0){
+                return $scope.newCameraErrors.push("errors found");
+            } else {
+                $scope.newCamera.type = type;
+                gearboxFactory.addGearboxItem($scope.newCamera, function(data){
+                    console.log(data);
+                    if(data.data.success){
+                        updateGearbox();
+                        $scope.newCamera = {};
+                    }
+                })
+            }
+        } else if(type === 'lens'){
+            $scope.newLensErrors = [];
+            if(!$scope.newLens){
+                $scope.newLensErrors.push("New lens is empty");
+            };
+            if(!$scope.newLens.name || $scope.newLens.name.length < 3){
+                $scope.newLensErrors.push("Please add an item name");
+            };
+            if(!$scope.newLens.serial){
+                $scope.newLensErrors.push("no lens serial");
+            }
+            if(!$scope.newLens.fk_item || $scope.newLens.fk_item.length < 4){
+                $scope.newLensErrors.push("please choose a lens from the list");
+            };
+            if($scope.newLens.length > 0){
+                return $scope.newLensErrors.push("errors found");
+            } else {
+                $scope.newLens.type = type;
+                gearboxFactory.addGearboxItem($scope.newLens, function(data){
+                    console.log(data);
+                    if(data.data.success){
+                        updateGearbox();
+                        $scope.newLens = {};
+                    }
+                })
+            }
+        }
+        
     };
 })

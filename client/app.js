@@ -28,6 +28,10 @@ app.config(function($routeProvider){
         templateUrl: '/partials/lensList.html',
         controller: 'lensListController'
     })
+    .when('/bagsList/:manufacturer', {
+        templateUrl: '/partials/bagsList.html',
+        controller: 'bagsListController'
+    })
     .when('/accessoryList/:manufacturer', {
         templateUrl: '/partials/accessory.html',
         controller: 'accessoryController'

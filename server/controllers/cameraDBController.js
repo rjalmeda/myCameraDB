@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var Lens = mongoose.model('Lens');
 var Camera = mongoose.model('Camera');
+var Bag = mongoose.model('Bag');
 var Manufacturer = mongoose.model('Manufacturer');
 module.exports = (function(){
     return {
@@ -122,6 +123,15 @@ module.exports = (function(){
                     return res.json({success: false, errors:err})
                 } else {
                     return res.json({success: true, cameras: cameras})
+                }
+            })
+        },
+        checkBags: function(req,res){
+            Bag.find({fk_manufacturer: req.params.manufacturerID}, function(err, bags){
+                if(err){
+                    return res.json({success: false, errors: err})
+                } else {
+                    return res.json({success: true, bags: bags})
                 }
             })
         }

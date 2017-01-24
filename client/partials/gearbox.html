@@ -15,20 +15,20 @@
                 <div class="flipCard" dblclickflip>
                     <div class="gearItem gearboxItem flipFront">
                         <h3>{{camera.name}}</h3>
-                        <img class="gearItem" ng-src="{{camera.fk_camera.gearboxPic}}">
+                        <img class="gearItem" ng-src="{{camera.fk_item.gearboxPic}}">
                     </div>
                     <div class="gearItem gearboxItem flipBack">
-                        <h3>back</h3>
-                        <img class="gearItem" ng-src="{{camera.fk_camera.gearboxPic}}">
+                        <h3>{{camera.serial}}</h3>
+                        <img class="gearItem" ng-src="{{camera.fk_item.gearboxPic}}">
                     </div>
                 </div>
             </div>
 <!--            Sample Flippable draggable card-->            
             
-            <div class="addGearboxItem">
-                <form ng-show="addCameraWindow">
-                    <input type="hidden" ng-model="newCamera.type" value="camera">
+            <div class="addGearboxItem" ng-show="addCameraWindow">
+                <form ng-submit="addGearboxItem('camera')">
                     <p>Name: <input type="text" ng-model="newCamera.name"></p>
+                    <p>Serial: <input type="text" ng-model="newCamera.serial"></p>
                     <table>
                         <tr>
                             <td>Manufacturer: </td>
@@ -57,11 +57,13 @@
                             </td>
                         </tr>
                     </table>
+                    <img class="gearItem" ng-src="{{newCameraPic}}">
                     <button type="submit">Submit</button>
+                    <button type="button" ng-click="toggleAddCamera()" ng-show="addCameraWindow">Cancel</button>
                 </form>
-                <img class="gearItem" ng-src="{{newCameraPic}}">
+            </div>
+            <div style="display: inline-block; vertical-align: top;">
                 <button type="button" ng-click="toggleAddCamera()" ng-show="!addCameraWindow">Add Camera</button>
-                <button type="button" ng-click="toggleAddCamera()" ng-show="addCameraWindow">Cancel</button>
             </div>
         </div>
         
@@ -80,15 +82,46 @@
                 <div class="flipCard" dblclickflip>
                     <div class="gearItem gearboxItem flipFront">
                         <h3>{{lens.name}}</h3>
-                        <img class="gearItem" ng-src="{{lens.fk_lens.gearboxPic}}">
+                        <img class="gearItem" ng-src="{{lens.fk_item.gearboxPic}}">
                     </div>
                     <div class="gearItem gearboxItem flipBack">
-                        <h3>back</h3>
-                        <img class="gearItem" ng-src="{{lens.fk_lens.gearboxPic}}">
+                        <h3>{{lens.serial}}</h3>
+                        <img class="gearItem" ng-src="{{lens.fk_item.gearboxPic}}">
                     </div>
                 </div>
             </div>
 <!--            New flippable lens cards-->
+            <div class="addGearboxItem" ng-show="addLensWindow">
+                <form ng-submit="addGearboxItem('lens')">
+                    <p>Name: <input type="text" ng-model="newLens.name"></p>
+                    <p>Serial: <input type="text" ng-model="newLens.serial"></p>
+                    <table>
+                        <tr>
+                            <td>Manufacturer: </td>
+                            <td>
+                                <select ng-model="lensManufacturerID" ng-change="changeLensManufacturer()">
+                                    <option value="custom">Custom</option>
+                                    <option ng-repeat="manufacturer in manufacturers" value="{{manufacturer._id}}">{{manufacturer.name}}</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Lens: </td>
+                            <td>
+                                <select ng-model="newListLens" ng-change="updateNewLensPicture()">
+                                    <option ng-repeat="listLens in targetLenses" value="{{listLens._id}}<->{{listLens.gearboxPic}}">{{listLens.name}}</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                    <img class="gearItem" ng-src="{{newLensPic}}">
+                    <button type="submit">Submit</button>
+                    <button type="button" ng-click="toggleAddLens()" ng-show="addLensWindow">Cancel</button>
+                </form>
+            </div>
+            <div style="display: inline-block; vertical-align: top;">
+                <button type="button" ng-click="toggleAddLens()" ng-show="!addLensWindow">Add Lens</button>
+            </div>
             
         </div>
         
@@ -207,7 +240,8 @@
         </div>
     </div>
 -->
-</div>
-<div style="background: green; width: 120px; height: 120px" droppable>
-    <h2>Drop Here</h2>
+    <div style="background: green; width: 120px; height: 120px" droppable>
+        <h2>Experimental:</h2>
+        <h2>Drop Here</h2>
+    </div>
 </div>
