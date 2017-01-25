@@ -1,0 +1,48 @@
+<h1>{{manufacturer.name}} Bag List</h1>
+<div class="bagListForm">
+    <form ng-submit="addBag()">
+        <p>fk_manufacturer: <input type="text" ng-model="bag.fk_manufacturer" disabled> {{manufacturer.name}} _id</p>
+        <p>name <input type="text" ng-model="bag.name"></p>
+        <p>model <input type="text" ng-model="bag.model"></p>
+        <p>weightCap <input type="number" ng-model="bag.weightCap"></p>
+        <p>volumeCap <input type="number" ng-model="bag.volumeCap"> cm3</p>
+        <p>weight <input type="number" ng-model="bag.weight"></p>
+        <p>amazon keywords <input type="text" ng-model="bag.amazonKeywords"></p>
+        <p>amazonASIN <input type="text" ng-model="bag.amazonASIN"></p>
+        <p>gearboxPic <input type="text" ng-model="bag.gearboxPic"></p>
+        <p>infoLink <input type="text" ng-model="bag.infoLink"></p>
+        <img ng-src="{{bag.gearboxPic}}"><br>
+        <button type="submit">Add Bag</button> | <button type="button" ng-click="updateBag()">Update</button> 
+    </form>
+    <p ng-repeat="error in bagErrors" style="color: red;">{{error}}</p>
+</div><br>
+<div class="bag List">
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Model</th>
+                <th>Weight</th>
+                <th>weight Capacity</th>
+                <th>volume Capacity</th>
+                <th>amazon keywords</th>
+                <th>amazon ASIN</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="bagList in bags">
+                <td>{{bagList.name}}</td>
+                <td>{{bagList.model}}</td>
+                <td>{{bagList.weight}}</td>
+                <td>{{bagList.weightCap}}</td>
+                <td>{{bagList.volumeCap}}</td>
+                <td>{{bagList.amazonKeywords}}</td>
+                <td>{{bagList.amazonASIN}}</td>
+                <td><button type="button" ng-click="editBag(bagList)">Edit</button></td>
+                <td><button type="button" ng-click="deleteBag(bagList._id)">Delete</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -60,5 +60,15 @@ app.factory('adminFactory', function($http){
             callback(data);
         });
     };
+    factory.addBag = function(bag, callback){
+        $http.post('/addBag', bag).then(function(data){
+            callback(data);
+        });
+    };
+    factory.deleteBag = function(bagID, callback){
+        $http.delete('/deleteBag/' + bagID).then(function(data){
+            callback(data);
+        });
+    };
     return factory;
 })

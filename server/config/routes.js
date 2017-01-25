@@ -89,4 +89,10 @@ module.exports = function(app){
     app.get('/checkBags/:manufacturerID', function(req,res){
         cameraDBController.checkBags(req,res);
     });
+    app.post('/addBag', function(req,res){
+        cameraDBController.addBag(req,res);
+    });
+    app.delete('/deleteBag/:cameraID', function(req,res){
+        cameraDBController.deleteBag(req,res);
+    });
 }

@@ -67,7 +67,7 @@ module.exports = (function(){
                                 if(err2){
                                     return res.json({success: false, errors: err2})
                                 } else if (lens2){
-                                    return res.json({success: true, lens: newLens})
+                                    return res.json({success: true, lens: newLens, lens2: lens2})
                                 }
                             })
                         }
@@ -132,6 +132,33 @@ module.exports = (function(){
                     return res.json({success: false, errors: err})
                 } else {
                     return res.json({success: true, bags: bags})
+                }
+            })
+        },
+        addBag: function(req,res){
+            Bag.findOne({model: req.body.model}, function(err, bag){
+                if(err){
+                    return res.json({success: false, errors: err});
+                } else if (bag){
+                    return res.json({success: false, errors: "bag model already exists"});
+                } else if (!bag){
+                    var newBag = new Bag(req.body);
+                    newBag.save(function(err1, bag1){
+                        if(err1){
+                            return res.json({success: false, errors: err1});
+                        } else if(bag1){
+                            return res.json({success: true, bag: newBag, req: req.body});
+                        }
+                    })
+                }
+            })
+        },
+        deleteBag: function(req,res){
+            Bag.remove({_id: req.params.cameraID}, function(err){
+                if(err){
+                    return res.json({success: false, errors: err});
+                } else {
+                    return res.json({success: true})
                 }
             })
         }

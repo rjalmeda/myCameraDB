@@ -4,6 +4,7 @@ var BagSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Manufacturer'
     },
+    name: String,
     model: String,
     weightCap: {
         default: 0,
