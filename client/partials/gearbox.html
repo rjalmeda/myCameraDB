@@ -11,6 +11,7 @@
             <h2>Cameras</h2>
             
 <!--            Sample Flippable draggable card-->
+<!--
             <div class="flippable" ng-repeat="camera in cameras" draggable>
                 <div class="flipCard" dblclickflip>
                     <div class="gearItem gearboxItem flipFront">
@@ -23,7 +24,91 @@
                     </div>
                 </div>
             </div>
-<!--            Sample Flippable draggable card-->            
+-->
+<!--            Sample Flippable draggable card            -->
+            
+            <!-- New detailed card -->
+            <div class="flippable" ng-repeat="camera in cameras" draggable>
+                <div class="flipCard" dblclickflip>
+                    <div class="flipFront">
+                        <div class="cardContainer">
+                            <div class="cardFront">
+                                <div class="cardFrontHeader">
+                                    <div class="cardFrontHeaderName">
+                                        {{camera.name}}
+                                    </div>
+                                    <div class="cardFrontHeaderWeight">
+                                        {{camera.fk_item.weight}}
+                                    </div>
+                                </div>
+
+                                <div class="cardFrontImage" style="background-image: url('{{camera.fk_item.gearboxPic}}')">
+
+                                </div>
+
+                                <div class="cardFrontMidBar">
+                                    <div class="cardFrontMidbarType">
+
+                                    </div>
+                                    <div class="cardFrontMidbarBadges">
+
+                                    </div>
+                                </div>
+
+                                <div class="cardFrontMainInfo">
+                                    <div class="cardFrontMainInfoCell">
+                                        
+                                    </div>
+                                    <div class="cardFrontMainInfoCell">
+
+                                    </div>
+                                    <div class="cardFrontMainInfoCell">
+
+                                    </div>
+                                    <div class="cardFrontMainInfoCell">
+
+                                    </div>
+                                    <div class="cardFrontMainInfoCell">
+
+                                    </div>
+                                    <div class="cardFrontMainInfoCell">
+
+                                    </div>
+                                </div>
+
+                                <div class="cardFrontFooter">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flipBack">
+                        <div class="cardContainer">
+                            <div class="cardBack">
+                                <div class="cardBackHeader">
+                                    Serial : <span class="cardBackText">{{camera.serial}}</span>
+                                </div>
+                                <div class="cardBackDescription">
+                                    Description: <span class="cardBackText">{{camera.description}}</span>
+                                </div>
+                                <div class="cardBackNotes">
+                                    Notes: <span class="cardBackText">{{camera.notes}}</span>
+                                </div>
+                                <div class="cardBackFooter">
+                                    <div class="cardBackFooterModel">
+                                        Model: <span class="cardBackText">{{camera.fk_item.model}}</span>
+                                    </div>
+                                    <div class="cardBackFooterPrice">
+                                        MSRP: <span class="cardBackText">${{camera.fk_item.price}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- New detailed card -->          
             
             <div class="addGearboxItem" ng-show="addCameraWindow">
                 <form ng-submit="addGearboxItem('camera')">

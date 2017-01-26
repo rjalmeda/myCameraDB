@@ -14,6 +14,7 @@ var ItemSchema = mongoose.Schema({
     location: {
         type: mongoose.Schema.Types.ObjectId,
         model: 'Pack'
-    }
+    },
+    purchaseDate: Date
 });
 mongoose.model('Item', ItemSchema);

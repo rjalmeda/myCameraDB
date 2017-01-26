@@ -80,8 +80,8 @@ div.addGearboxItem {
 }
 
 div.flippable, div.flipFront, div.flipBack {
-    width: 120px;
-    height: 150px;
+    width: 250px;
+    height: 340px;
 }
 
 div.flippable {
@@ -113,4 +113,132 @@ div.flipFront {
 
 div.flipBack {
     transform: rotateY(180deg);
+}
+
+div.cardContainer {
+    height: 320px;
+    width: 230px;
+    border: 10px solid black;
+    border-radius: 8px;
+}
+div.cardFront, div.cardBack{
+    position: relative;
+    background-color: #b1a621;
+    width: 230px;
+    height: 320px;
+}
+div.cardFrontHeader, div.cardFrontImage, div.cardFrontMidBar, div.cardFrontMainInfo, div.cardFrontFooter, div.cardBackHeader, div.cardBackDescription, div.cardBackNotes, div.cardBackFooter{
+    position: absolute;
+}
+
+div.cardFrontHeader {
+    width: 210px;
+    height: 18px;
+    top: 10px;
+    left: 8px;
+    background: #b4a376;
+    border-radius: 3px;
+    border: 2px solid black;
+    z-index: 2;
+}
+
+div.cardFrontHeaderName {
+    display: inline-block;
+    vertical-align: top;
+    width: 150px;
+    height: 18px;
+}
+
+div.cardFrontHeaderWeight {
+    display: inline-block;
+    vertical-align: top;
+    text-align: right;
+    width: 50px;
+    height: 18px;
+}
+
+div.cardFrontImage {
+    border: 2px solid grey;
+    width: 200px;
+    height: 150px;  
+    background-color: rgba(234, 189, 136, 0.28);
+    top: 30px;
+    left: 12px;
+    z-index: 1;
+    background-color: white;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+div.cardFrontMidBar {
+    width: 210px;
+    height: 18px;
+    border: 2px solid grey;
+    top: 180px;
+    left: 8px;
+    z-index: 2;
+    background-color: antiquewhite;
+}
+
+div.cardFrontMainInfo {
+    width: 186px;
+    height: 90px;
+    border: 2px solid grey;
+    top: 200px;
+    left: 20px;
+    
+}
+    div.cardFrontMainInfoCell{
+        width: 55px;
+        height: 40px;
+        display: inline-block;
+        border: 2px solid red;
+        position: relative;
+        margin: 0px;
+        padding: 0px;
+    }
+
+div.cardFrontFooter {
+    width: 210px;
+    height: 18px;
+    border: 2px solid grey;
+    top: 295px;
+    left: 8px;
+}
+div.cardBackHeader{
+    top: 15px;
+    left: 12px;
+    height: 20px;
+    width: 205px;
+    background: rgba(235, 235, 235, 0.56);
+}
+div.cardBackDescription{
+    top: 37px;
+    left: 12px;
+    width: 205px;
+    height: 90px;
+    background: rgba(235, 235, 235, 0.56);
+}
+div.cardBackNotes{
+    top: 130px;
+    left: 12px;
+    width: 205px;
+    height: 160px;
+    background: rgba(235, 235, 235, 0.56);
+}
+div.cardBackFooter{
+    width: 205px;
+    height: 18px;
+    top: 294px;
+    left: 12px;
+}
+div.cardBackFooterModel, div.cardBackFooterPrice{
+    width: 100px;
+    height: 18px;
+    display: inline-block;
+    background: rgba(235, 235, 235, 0.56);
+}
+span.cardBackText {
+    font-size: 8pt;
 }
