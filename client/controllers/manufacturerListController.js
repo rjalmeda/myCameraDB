@@ -1,4 +1,4 @@
-app.controller('manufacturerListController', function($scope, adminManufacturerFactory){
+app.controller('manufacturerListController', function($scope, $location, adminManufacturerFactory){
     $scope.manufacturers = [
         "Nikon",
         "Canon",

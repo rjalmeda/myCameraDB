@@ -1,4 +1,4 @@
-app.controller('adminController', function($scope, $location, adminFactory){
+app.controller('adminController', function($scope, $location, $route, adminFactory){
     $scope.manufacturer = {};
     $scope.lens = {};
     $scope.camera = {};
@@ -14,6 +14,9 @@ app.controller('adminController', function($scope, $location, adminFactory){
             adminFactory.addManufacturer($scope.manufacturer, function(data){
                 $scope.manufacturer = {};
                 console.log(data);
+                console.log("checked manufacturers");
+                console.log($location.url);
+                return $route.reload();
             })
         }
     };
